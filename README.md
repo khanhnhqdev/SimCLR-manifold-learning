@@ -149,6 +149,7 @@ python eval.py --config_exp configs/scan/imagenet_eval.yml --model $MODEL_PATH_I
 
 ## Tutorial
 
+<<<<<<< Updated upstream
 If you want to see another (more detailed) example for STL-10, checkout [TUTORIAL.md](https://github.com/wvangansbeke/Unsupervised-Classification/blob/master/TUTORIAL.md). It provides a detailed guide and includes visualizations and log files with the training progress.
 
 ## Citation
@@ -172,3 +173,6 @@ This software is released under a creative commons license which allows for pers
 
 ## Acknoledgements
 This work was supported by Toyota, and was carried out at the TRACE Lab at KU Leuven (Toyota Research on Automated Cars in Europe - Leuven).
+=======
+If you want to see another (more detailed) example for CIFAR-10, checkout [TUTORIAL.md](https://github.com/khanhnhqdev/SimCLR-manifold-learning/blob/main/TUTORIAL.md). It provides a detailed guide and includes visualizations and log files with the training progress.
+>>>>>>> Stashed changes
