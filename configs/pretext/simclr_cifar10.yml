@@ -1,6 +1,6 @@
 # Setup
 setup: simclr
-
+KNN_acc: simclr.txt
 # Model
 backbone: resnet18
 model_kwargs:
@@ -18,7 +18,7 @@ criterion_kwargs:
    temperature: 0.1 
 
 # Hyperparameters
-epochs: 500
+epochs: 5
 optimizer: sgd
 optimizer_kwargs:
    nesterov: False
@@ -28,8 +28,8 @@ optimizer_kwargs:
 scheduler: cosine
 scheduler_kwargs:
    lr_decay_rate: 0.1
-batch_size: 512 
-num_workers: 8
+batch_size: 1
+num_workers: 2
 
 # Transformations
 augmentation_strategy: simclr 

@@ -12,16 +12,16 @@ class MyPath(object):
         assert(database in db_names)
 
         if database == 'cifar-10':
-            return '/dataset/cifar-10/'
-        
+            return 'dataset/cifar-10/'
+
         elif database == 'cifar-20':
-            return '/dataset/cifar-20/'
+            return 'dataset/cifar-20/'
 
         elif database == 'stl-10':
-            return '/dataset/stl-10/'
-        
+            return 'dataset/stl-10/'
+
         elif database in ['imagenet', 'imagenet_50', 'imagenet_100', 'imagenet_200']:
-            return '/path/to/imagenet/'
+            return 'dataset/imagenet/'
         
         else:
             raise NotImplementedError
