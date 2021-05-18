@@ -1,6 +1,6 @@
 # Setup
 setup: simclr
-KNN_acc: simclr.txt
+KNN_acc: simclr-cifar10.txt
 # Model
 backbone: resnet18
 model_kwargs:
