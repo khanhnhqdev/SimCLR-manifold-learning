@@ -40,6 +40,48 @@ def simclr_train(train_loader, model, criterion, optimizer, epoch):
             progress.display(i)
 
 
+def compute_uniform_w(images, p):
+    w = torch.ones(images.size(0), p['n_views'] - 1)
+    w = w / w.sum(dim=1).view(-1, 1)
+    return w
+
+def compute_random_w(images, p):
+    w = torch.rand(images.size(0), p['n_views'] - 1)
+    w = w / w.sum(dim=1).view(-1, 1)
+    return w
+
+def simclr_manifold_train(p, train_loader, model, criterion, optimizer, epoch):
+    """
+    Train according to the scheme from SimCLR
+    https://arxiv.org/abs/2002.05709
+    """
+    losses = AverageMeter('Loss', ':.4e')
+    progress = ProgressMeter(len(train_loader),
+        [losses],
+        prefix="Epoch: [{}]".format(epoch))
+
+    model.train()
+
+    for i, batch in enumerate(train_loader):
+        images = batch['image']
+        input_ = torch.cat(images, axis = 0) # batch x nviews
+        input_ = input_.cuda(non_blocking=True)
+        output = model(input_) # batch x nviews, output_dim
+        if p['setup'] == 'simclr-uniform-w':
+            w = compute_uniform_w(input_, p).cuda(non_blocking=True)
+        elif p['setup'] == 'simclr-random-w':
+            w = compute_random_w(input_, p).cuda(non_blocking=True)
+        loss = criterion(output, w)
+        losses.update(loss.item())
+
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+        if i % 25 == 0:
+            progress.display(i)
+
+
 def scan_train(train_loader, model, criterion, optimizer, epoch, update_cluster_head_only=False):
     """ 
     Train w/ SCAN-Loss
