@@ -41,6 +41,37 @@ class AugmentedDataset(Dataset):
 
 
 """ 
+    AugmentedManyViewsDataset
+    Returns an image together with number of views after augmented. 
+"""
+
+
+class AugmentedManyViewsDataset(Dataset):
+    def __init__(self, dataset):
+        super(AugmentedManyViewsDataset, self).__init__()
+        transform = dataset.transform
+        dataset.transform = None
+        self.dataset = dataset
+
+        if isinstance(transform, dict):
+            self.image_transform = transform['standard']
+            self.augmentation_transform = transform['augment']
+
+        else:
+            self.image_transform = transform
+            self.augmentation_transform = transform
+
+    def __len__(self):
+        return len(self.dataset)
+
+    def __getitem__(self, index):
+        sample = self.dataset.__getitem__(index)
+        image = sample['image']
+        sample['image'] = self.augmentation_transform(image)
+        return sample
+
+
+""" 
     NeighborsDataset
     Returns an image with one of its neighbors.
 """

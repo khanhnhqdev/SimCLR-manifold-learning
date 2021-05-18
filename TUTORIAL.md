@@ -13,7 +13,6 @@ Clone the repository and navigate to the directory:
 ```bash
 git clone https://github.com/khanhnhqdev/SimCLR_manifold_learning
 cd  SimCLR_manifold_learning
-checkout branch SimCLR
 ```
 
 ### Environment

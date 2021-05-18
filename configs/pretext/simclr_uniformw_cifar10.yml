@@ -1,6 +1,7 @@
 # Setup
-setup: simclr
-KNN_acc: simclr-cifar10.txt
+setup: simclr-uniform-w
+n_views: 5
+KNN_acc: simclr-uniformw-cifar10.txt
 # Model
 backbone: resnet18
 model_kwargs:
@@ -13,16 +14,16 @@ val_db_name: cifar-10
 num_classes: 10
 
 # Loss
-criterion: simclr
+criterion: simclr-manifold
 criterion_kwargs:
-   temperature: 0.1 
+   temperature: 0.1
 
 # Hyperparameters
 epochs: 5
 optimizer: sgd
 optimizer_kwargs:
    nesterov: False
-   weight_decay: 0.0001 
+   weight_decay: 0.0001
    momentum: 0.9
    lr: 0.4
 scheduler: cosine
@@ -32,7 +33,7 @@ batch_size: 8
 num_workers: 2
 
 # Transformations
-augmentation_strategy: simclr 
+augmentation_strategy: simclr-manifold
 augmentation_kwargs:
    random_resized_crop:
       size: 32
@@ -44,7 +45,7 @@ augmentation_kwargs:
       contrast: 0.4
       saturation: 0.4
       hue: 0.1
-   random_grayscale: 
+   random_grayscale:
       p: 0.2
    normalize:
       mean: [0.4914, 0.4822, 0.4465]
