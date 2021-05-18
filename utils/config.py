@@ -11,13 +11,18 @@ from utils.utils import mkdir_if_missing
 def create_config(config_file_env, config_file_exp):
     # Config for environment path
     with open(config_file_env, 'r') as stream:
-        root_dir = yaml.safe_load(stream)['root_dir']
+        env_config = yaml.safe_load(stream)
 
     with open(config_file_exp, 'r') as stream:
         config = yaml.safe_load(stream)
 
     cfg = EasyDict()
 
+    for k, v in env_config.items():
+        if k == 'root_dir':
+            root_dir = v
+        if k == 'log_dir':
+            log_dir = v
     # Copy
     for k, v in config.items():
         cfg[k] = v
@@ -28,6 +33,7 @@ def create_config(config_file_env, config_file_exp):
     mkdir_if_missing(base_dir)
     mkdir_if_missing(pretext_dir)
     cfg['pretext_dir'] = pretext_dir
+    cfg['log_dir'] = log_dir
     cfg['pretext_checkpoint'] = os.path.join(pretext_dir, 'checkpoint.pth.tar')
     cfg['pretext_model'] = os.path.join(pretext_dir, 'model.pth.tar')
     cfg['topk_neighbors_train_path'] = os.path.join(pretext_dir, 'topk-train-neighbors.npy')
