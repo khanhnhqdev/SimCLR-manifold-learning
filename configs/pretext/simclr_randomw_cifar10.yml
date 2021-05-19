@@ -1,3 +1,5 @@
+root_dir: SimCLR_manifold_learning/saved-models/simclr-uniform-w
+log_dir: ./logs
 # Setup
 setup: simclr-random-w
 n_views: 5

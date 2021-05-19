@@ -1,3 +1,5 @@
+root_dir: SimCLR_manifold_learning/saved-models/simclr
+log_dir: ./logs
 # Setup
 setup: simclr
 KNN_acc: simclr-cifar10.txt
