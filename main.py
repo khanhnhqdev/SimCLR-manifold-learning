@@ -127,9 +127,9 @@ def main():
 
         # Checkpoint
         print('Checkpoint ...')
-        if epoch % 10 == 9:
-            torch.save({'optimizer': optimizer.state_dict(), 'model': model.state_dict(),
-            'epoch': epoch + 1}, p['pretext_checkpoint'])
+
+        torch.save({'optimizer': optimizer.state_dict(), 'model': model.state_dict(),
+        'epoch': epoch + 1}, p['pretext_checkpoint'])
 
     # Save final model
     torch.save({'optimizer': optimizer.state_dict(), 'model': model.state_dict(),

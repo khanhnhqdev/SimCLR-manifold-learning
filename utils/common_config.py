@@ -71,7 +71,7 @@ def get_model(p, pretrain_path=None):
         raise ValueError('Invalid backbone {}'.format(p['backbone']))
 
     # Setup
-    if p['setup'] in ['simclr', 'moco', 'simclr-random-w', 'simclr-uniform-w']:
+    if p['setup'] in ['simclr', 'moco', 'simclr-random-w', 'simclr-uniform-w', 'simclr-LLE']:
         from models.models import ContrastiveModel
         model = ContrastiveModel(backbone, **p['model_kwargs'])
 
