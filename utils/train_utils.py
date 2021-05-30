@@ -48,7 +48,6 @@ def compute_uniform_w(images, p):
 def compute_random_w(images, p):
     w = torch.rand(images.size(0), p['n_views'] - 1)
     w = w / w.sum(dim=1).view(-1, 1)
-    print(w)
     return w
 
 
@@ -68,6 +67,14 @@ def compute_LLE_w(images, p, alpha=0.1):
 
     return torch.cat(w, dim=0)
     return w
+
+
+def compute_random_w_C(images, p):
+    w = p['a'] + (p['b'] - p['a']) * torch.rand(images.size(0), p['n_views'] - 1)
+    w = w / w.sum(dim=1).view(-1, 1)
+    norm = w.norm(p=2, dim=1, keepdim=True)
+    w_normalized = p['C'] * w.div(norm.expand_as(w))
+    return w_normalized
 
 
 def simclr_manifold_train(p, train_loader, model, criterion, optimizer, epoch):
@@ -93,6 +100,8 @@ def simclr_manifold_train(p, train_loader, model, criterion, optimizer, epoch):
             w = compute_random_w(input_, p).cuda(non_blocking=True)
         elif p['setup'] == 'simclr-LLE':
             w = compute_LLE_w(input_, p).cuda(non_blocking=True)
+        elif p['setup'] == 'simclr-random-w-C':
+            w = compute_random_w_C(input_, p).cuda(non_blocking=True)
         loss = criterion(output, w)
         losses.update(loss.item())
 
