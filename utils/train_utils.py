@@ -94,6 +94,11 @@ def simclr_manifold_train(p, train_loader, model, criterion, optimizer, epoch):
         input_ = torch.cat(images, axis = 0) # batch x nviews
         input_ = input_.cuda(non_blocking=True)
         output = model(input_) # batch x nviews, output_dim
+
+        if p['add-noise'] == True:
+            noise = (torch.randn(output.size()) * p['std'] + p['mean']).cuda(non_blocking=True)
+            output = output + noise
+
         if p['setup'] == 'simclr-uniform-w':
             w = compute_uniform_w(input_, p).cuda(non_blocking=True)
         elif p['setup'] == 'simclr-random-w':
