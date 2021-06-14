@@ -22,7 +22,7 @@ Make sure you have a GPU available (ideally a 1080TI or better) and set $gpu_ids
 conda activate your_anaconda_env
 export CUDA_VISIBLE_DEVICES=$gpu_ids
 ```
-I will use an environment with Python 3.7, Pytorch 1.6, CUDA 10.2 and CUDNN 7.5.6 for this example.
+
 
 ### Paths
 Adapt the path in `configs/env.yml` to `saved-models/`, since this directory will be used in this tutorial. 
