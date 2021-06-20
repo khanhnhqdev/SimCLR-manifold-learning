@@ -1,34 +1,30 @@
-root_dir: ./
+root_dir: SimCLR_manifold_learning/saved-models/simclr
 log_dir: ./logs
 # Setup
-setup: simclr-random-w-C
-n_views: 5
-KNN_acc: simclr-randomw-C-cifar10.txt
+setup: simclr
+KNN_acc: simclr-cifar10.txt
 # Model
 backbone: resnet18
 model_kwargs:
    head: mlp
    features_dim: 128
-# Random parameter
-C: 0.1
-a: -1
-b: 1
+
 # Dataset
 train_db_name: cifar-10
 val_db_name: cifar-10
 num_classes: 10
 
 # Loss
-criterion: simclr-manifold
+criterion: simclr
 criterion_kwargs:
-   temperature: 0.1
+   temperature: 0.1 
 
 # Hyperparameters
 epochs: 5
 optimizer: sgd
 optimizer_kwargs:
    nesterov: False
-   weight_decay: 0.0001
+   weight_decay: 0.0001 
    momentum: 0.9
    lr: 0.4
 scheduler: cosine
@@ -38,7 +34,7 @@ batch_size: 8
 num_workers: 2
 
 # Transformations
-augmentation_strategy: simclr-manifold
+augmentation_strategy: simclr
 augmentation_kwargs:
    random_resized_crop:
       size: 32
@@ -50,7 +46,7 @@ augmentation_kwargs:
       contrast: 0.4
       saturation: 0.4
       hue: 0.1
-   random_grayscale:
+   random_grayscale: 
       p: 0.2
    normalize:
       mean: [0.4914, 0.4822, 0.4465]

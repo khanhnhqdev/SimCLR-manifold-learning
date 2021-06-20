@@ -5,3 +5,6 @@ data/__pycache__/
 losses/__pycache__/
 models/__pycache__/
 dataset/
+last_layer/
+SimCLR_manifold_learning/
+saved-models/

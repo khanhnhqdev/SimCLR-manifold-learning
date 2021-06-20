@@ -3,7 +3,7 @@ log_dir: ./logs
 # Setup
 setup: simclr-uniform-w
 n_views: 5
-KNN_acc: simclr-uniformw-cifar10.txt
+KNN_acc: simclr-uniformw-simclr.txt
 # Model
 backbone: resnet18
 model_kwargs:

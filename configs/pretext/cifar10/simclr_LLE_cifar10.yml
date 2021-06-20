@@ -1,4 +1,4 @@
-root_dir: SimCLR_manifold_learning/saved-models/simclr-LLE
+root_dir: SimCLR_manifold_learning/saved-models/cifar10-LLE
 log_dir: ./logs
 # Setup
 setup: simclr-LLE
