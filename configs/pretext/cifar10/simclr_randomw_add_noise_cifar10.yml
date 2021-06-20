@@ -1,14 +1,14 @@
-root_dir: SimCLR_manifold_learning/saved-models/cifar10-randomw
+root_dir: SimCLR_manifold_learning/saved-models/simclr-randomw
 log_dir: ./logs
 # Setup
-setup: cifar10-random-w
+setup: simclr-random-w
 # Gaussian parameter
 add-noise: True
 mean: 0
 std: 0.001
 
 n_views: 3
-KNN_acc: cifar10-randomw-add-noise-cifar10.txt
+KNN_acc: simclr-randomw-add-noise-cifar10.txt
 # Model
 backbone: resnet18
 model_kwargs:
@@ -21,7 +21,7 @@ val_db_name: cifar-10
 num_classes: 10
 
 # Loss
-criterion: cifar10-manifold
+criterion: simclr-manifold
 criterion_kwargs:
    temperature: 0.5
 
@@ -40,7 +40,7 @@ batch_size: 8
 num_workers: 2
 
 # Transformations
-augmentation_strategy: cifar10-manifold
+augmentation_strategy: simclr-manifold
 augmentation_kwargs:
    random_resized_crop:
       size: 32

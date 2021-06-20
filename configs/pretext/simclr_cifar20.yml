@@ -1,8 +1,8 @@
-root_dir: SimCLR_manifold_learning/saved-models/cifar10
+root_dir: SimCLR_manifold_learning/saved-models/simclr/cifar-20
 log_dir: ./logs
 # Setup
 setup: cifar10
-
+KNN_acc: simclr-cifar20.txt
 # Model
 backbone: resnet18
 model_kwargs:
