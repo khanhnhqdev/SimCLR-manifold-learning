@@ -1,5 +1,5 @@
 # Setup
-setup: simclr
+setup: cifar10
 
 # Model
 backbone: resnet18
@@ -13,7 +13,7 @@ val_db_name: stl-10
 num_classes: 10
 
 # Loss
-criterion: simclr
+criterion: cifar10
 criterion_kwargs:
    temperature: 0.1 
 
@@ -32,7 +32,7 @@ batch_size: 512
 num_workers: 8
 
 # Transformations
-augmentation_strategy: simclr 
+augmentation_strategy: cifar10
 augmentation_kwargs:
    random_resized_crop:
       size: 96

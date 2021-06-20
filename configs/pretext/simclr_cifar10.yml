@@ -1,8 +1,8 @@
-root_dir: SimCLR_manifold_learning/saved-models/simclr
+root_dir: SimCLR_manifold_learning/saved-models/cifar10
 log_dir: ./logs
 # Setup
-setup: simclr
-KNN_acc: simclr-cifar10.txt
+setup: cifar10
+KNN_acc: cifar10-cifar10.txt
 # Model
 backbone: resnet18
 model_kwargs:
@@ -15,7 +15,7 @@ val_db_name: cifar-10
 num_classes: 10
 
 # Loss
-criterion: simclr
+criterion: cifar10
 criterion_kwargs:
    temperature: 0.1 
 
@@ -34,7 +34,7 @@ batch_size: 8
 num_workers: 2
 
 # Transformations
-augmentation_strategy: simclr 
+augmentation_strategy: cifar10
 augmentation_kwargs:
    random_resized_crop:
       size: 32
