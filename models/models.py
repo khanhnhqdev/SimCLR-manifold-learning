@@ -60,3 +60,16 @@ class ClusteringModel(nn.Module):
             raise ValueError('Invalid forward pass {}'.format(forward_pass))        
 
         return out
+
+
+class FinetuneModel(nn.Module):
+    def __init__(self, base_model, p):
+        super(FinetuneModel, self).__init__()
+        self.base_model = base_model
+        # output layer for dataset
+        self.fc = nn.Linear(p['model_kwargs']['features_dim'], p['num_classes'])
+
+    def forward(self, x):
+        feature = self.base_model(x)
+        x = self.fc(feature)
+        return x

@@ -73,14 +73,20 @@ def create_exp_config(config_file_exp):
     # Set paths for pretext task (These directories are needed in every stage)
     base_dir = os.path.join(root_dir, cfg['train_db_name'])
     pretext_dir = os.path.join(base_dir, 'pretext')
+    if cfg['freeze_layer'] == True:
+        finetune_dir = os.path.join(base_dir, 'last_layer')
+    else:
+        finetune_dir = os.path.join(base_dir, 'finetune')
     mkdir_if_missing(base_dir)
     mkdir_if_missing(pretext_dir)
+    mkdir_if_missing(finetune_dir)
     cfg['pretext_dir'] = pretext_dir
     cfg['log_dir'] = log_dir
     cfg['pretext_checkpoint'] = os.path.join(pretext_dir, 'checkpoint.pth.tar')
     cfg['pretext_model'] = os.path.join(pretext_dir, 'model.pth.tar')
     cfg['topk_neighbors_train_path'] = os.path.join(pretext_dir, 'topk-train-neighbors.npy')
     cfg['topk_neighbors_val_path'] = os.path.join(pretext_dir, 'topk-val-neighbors.npy')
+    cfg['finetune_checkpoint'] = os.path.join(finetune_dir, 'checkpoint.pth.tar')
 
     # If we perform clustering or self-labeling step we need additional paths.
     # We also include a run identifier to support multiple runs w/ same hyperparams.
