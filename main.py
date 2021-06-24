@@ -98,7 +98,7 @@ def main():
         model = model.cuda()
 
     # Training
-    f = open(os.path.join(p['log_dir'], p['KNN_acc']), "a")
+
     print(colored('Starting main loop', 'blue'))
     for epoch in range(start_epoch, p['epochs']):
         print(colored('Epoch %d/%d' % (epoch, p['epochs']), 'yellow'))
@@ -122,9 +122,10 @@ def main():
         print('Evaluate ...')
         top1 = contrastive_evaluate(val_dataloader, model, memory_bank_base)
         print('Result of kNN evaluation is %.2f' % (top1))
+        f = open(os.path.join(p['log_dir'], p['KNN_acc']), "a")
         f.write(str(top1))
         f.write('\n')
-
+        f.close()
         # Checkpoint
         print('Checkpoint ...')
 
