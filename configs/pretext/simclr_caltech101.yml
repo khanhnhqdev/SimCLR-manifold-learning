@@ -1,9 +1,9 @@
-root_dir: SimCLR_manifold_learning/saved-models/simclr/cifar-20
+root_dir: SimCLR_manifold_learning/saved-models/simclr/caltech-101
 log_dir: ./logs
+freeze_layer: True
 # Setup
 setup: simclr
-KNN_acc: simclr-cifar20.txt
-freeze_layer: True
+KNN_acc: simclr-caltech101.txt
 # Model
 backbone: resnet18
 model_kwargs:
@@ -11,9 +11,9 @@ model_kwargs:
    features_dim: 128
 
 # Dataset
-train_db_name: cifar-20
-val_db_name: cifar-20
-num_classes: 20
+train_db_name: caltech-101
+val_db_name: caltech-101
+num_classes: 101
 
 # Loss
 criterion: simclr

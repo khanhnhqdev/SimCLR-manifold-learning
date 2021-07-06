@@ -23,6 +23,9 @@ class MyPath(object):
         elif database == 'cifar-100':
             return 'dataset/cifar-100'
 
+        elif database == 'caltech-101':
+            return 'dataset/caltech-101'
+
         elif database in ['imagenet', 'imagenet_50', 'imagenet_100', 'imagenet_200']:
             return 'dataset/imagenet/'
         
