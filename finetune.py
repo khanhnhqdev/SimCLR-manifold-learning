@@ -87,17 +87,20 @@ def main():
         # Adjust lr
         lr = adjust_learning_rate(p, optimizer, epoch)
         print('Adjusted learning rate to {:.5f}'.format(lr))
-
+        total_loss = 0
         # Train
         for batch in train_dataloader:
             images = batch['image'].cuda(non_blocking=True)
             target = batch['target'].cuda(non_blocking=True)
-            optimizer.zero_grad()
+            print(images.shape)
+            print(target.shape)
+
             output = fine_tune_model(images)
             loss = criterion(output, target)
+            optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-
+            total_loss += loss.item()
         # Test on valid data
         correct = 0
         total = 0
