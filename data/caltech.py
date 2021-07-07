@@ -14,14 +14,6 @@ from torchvision import datasets, models, transforms
 
 data_dir = "./dataset/caltech101/Caltech101/Caltech101/"
 
-
-def caltech101(root=data_dir, train=True, transform=None):
-    if train:
-        return datasets.ImageFolder(root + '/train', transform)
-    else:
-        return datasets.ImageFolder(root + '/test', transform)
-
-
 class CALTECH101(Dataset):
     """`Caltech _ Dataset.
     """
@@ -41,7 +33,7 @@ class CALTECH101(Dataset):
 
     def __getitem__(self, index):
         sample = self.dataset.__getitem__(index)
-        img = sample[0]
+        img = transforms.ToPILImage()(sample[0])
         target = sample[1]
         out = {'image': img, 'target': target}
         return out

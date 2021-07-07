@@ -33,7 +33,6 @@ class AugmentedDataset(Dataset):
     def __getitem__(self, index):
         sample = self.dataset.__getitem__(index)
         image = sample['image']
-
         sample['image'] = self.image_transform(image)
         sample['image_augmented'] = self.augmentation_transform(image)
 
